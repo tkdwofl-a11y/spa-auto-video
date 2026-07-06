@@ -1,15 +1,26 @@
 # SPA Auto Video
 
-SPA(웹페이지)를 녹화하여 자동으로 영상을 생성하는 도구입니다.
+현대차그룹 영어 스피킹 시험(SPA) 대비를 위해, 매일 연습 영상을 만들어
+유튜브에 업로드하기 위한 대본(스크립트) 저장소입니다.
 
 ## 개요
 
-이 프로젝트는 SPA(Single Page Application) 화면을 자동으로 캡처하고,
-이를 영상 파일로 만들어주는 것을 목표로 합니다.
+- 목표 시험: 현대차그룹 SPA (Spoken Proficiency Assessment)
+- 현재 실력: SPA 33점 / TOEIC 600점 수준
+- 형식: 하루 20분 분량, 아래 5개 파트를 순서대로 연습
+
+1. Part 1. Personal questions (개인 질문)
+2. Part 2. Opinion questions (의견 질문)
+3. Part 3. Describe a picture (사진 묘사)
+4. Part 4. Analyze a graph (그래프 묘사)
+5. Part 5. Summarize an article (지문 요약)
+
+각 파트는 약 4분씩 균등하게 배분합니다.
 
 ## 상태
 
-현재 초기 기획 단계입니다. 자세한 내용은 [SPA_auto_video.MD](SPA_auto_video.MD)를 참고하세요.
+Day 1 대본을 [SPA_auto_video.MD](SPA_auto_video.MD)에 작성했습니다.
+현재 실력에 맞춰 쉬운 문장 위주로 구성했고, 점차 난이도를 올려갈 예정입니다.
 
 ## 기여하기
 
