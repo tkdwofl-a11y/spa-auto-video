@@ -20,7 +20,8 @@
 ## 상태
 
 일자별 대본은 `scripts/` 폴더에 있고, 전체 진행 계획은 [SPA_auto_video.MD](SPA_auto_video.MD)를 참고하세요.
-Day 1(SPA 33)부터 시작해 Day 2(SPA 45)까지 난이도를 단계적으로 올리고 있습니다.
+Day 1(SPA 33)부터 Day 5(SPA 75)까지 난이도 램프를 완료했습니다.
+이후에는 [scripts/PROTOCOL.md](scripts/PROTOCOL.md) 규칙에 따라 매주 새로운 주제로 대본을 자동 생성합니다.
 
 ## 기여하기
 

@@ -10,12 +10,22 @@
   4. Part 4. Analyze a graph (그래프 묘사)
   5. Part 5. Summarize an article (지문 요약)
 
-## 난이도 진행 계획
+## 진행 계획
 
-| Day | 목표 점수 | 문장 스타일 | 대본 |
+| 회차 | 목표 점수 | 문장 스타일 | 대본 |
 | --- | --- | --- | --- |
-| Day 1 | SPA 33 (현재 수준) | 쉬운 어휘, 짧고 단순한 문장 | [scripts/day01.md](scripts/day01.md) |
-| Day 2 | SPA 45 | 접속어·근거·예시를 포함한 조금 더 긴 문장 | [scripts/day02.md](scripts/day02.md) |
+| Day 1 | SPA 33 (시작 수준) | 쉬운 어휘, 짧고 단순한 문장 | [scripts/day01.md](scripts/day01.md) |
+| Day 2 | SPA 45 | 접속어·근거·예시 포함, 조금 더 긴 문장 | [scripts/day02.md](scripts/day02.md) |
+| Day 3 | SPA 55 | 복문·반례 포함, 어휘 수준 상향 | [scripts/day03.md](scripts/day03.md) |
+| Day 4 | SPA 65 | 관용 표현·양보/반박 구조 | [scripts/day04.md](scripts/day04.md) |
+| Day 5 | SPA 75 (실전 목표) | 원어민식 자연스러운 어투, 추상적 개념 | [scripts/day05.md](scripts/day05.md) |
 
-목표 점수에 도달할 때까지 매일 새로운 질문/사진/그래프/지문 소재로 대본을 추가하고,
-문장 길이와 표현 난이도를 단계적으로 높여갈 예정입니다.
+Day 1~5로 기초 난이도 램프(33 → 75)를 완료했습니다.
+
+## 이후 계획: 매주 랜덤 대본
+
+Day 5까지 도달한 이후에는 [scripts/PROTOCOL.md](scripts/PROTOCOL.md)의 규칙에 따라
+매주 새로운 주제로 대본을 하나씩 무작위 생성합니다. 사용한 주제는
+[scripts/used-topics.md](scripts/used-topics.md)에 기록해 중복을 피합니다.
+
+새 주간 대본은 `scripts/weekNN.md`로 추가되며, 이 표에도 한 줄씩 반영합니다.
