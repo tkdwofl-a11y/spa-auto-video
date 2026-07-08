@@ -23,6 +23,18 @@
 Day 1(SPA 33)부터 Day 5(SPA 75)까지 난이도 램프를 완료했습니다.
 이후에는 [scripts/PROTOCOL.md](scripts/PROTOCOL.md) 규칙에 따라 매주 새로운 주제로 대본을 자동 생성합니다.
 
+## 영상 생성
+
+대본(`scripts/dayNN.md`)을 TTS 내레이션 + 자막 슬라이드가 있는 mp4로 변환합니다.
+
+```
+pip install edge-tts pillow
+# ffmpeg가 PATH에 있어야 합니다.
+python scripts/tools/make_video.py scripts/day01.md videos/day01.mp4
+```
+
+생성된 mp4는 `videos/`(git에 커밋되지 않음)에 저장되며, 완성 후 유튜브에는 수동으로 업로드합니다.
+
 ## 기여하기
 
 1. 이슈나 아이디어가 있다면 GitHub Issue로 등록해주세요.
