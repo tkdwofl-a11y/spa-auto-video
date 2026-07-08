@@ -11,6 +11,8 @@ from pathlib import Path
 import edge_tts
 from PIL import Image, ImageDraw, ImageFont
 
+import visuals
+
 WIDTH, HEIGHT = 1280, 720
 VOICE = "en-US-AriaNeural"
 THINK_TIME = 12  # seconds of silence while the viewer practices
@@ -85,17 +87,26 @@ def wrap(text, width):
     return out
 
 
-def make_slide(path, part_num, part_label, heading, body, tag=None):
+def make_slide(path, part_num, part_label, heading, body, tag=None, image_path=None):
     img = Image.new("RGB", (WIDTH, HEIGHT), color=PART_COLORS.get(part_num, (40, 40, 40)))
     draw = ImageDraw.Draw(img)
     font_label = ImageFont.truetype(FONT_PATH, 30)
     font_heading = ImageFont.truetype(FONT_PATH, 34)
-    font_body = ImageFont.truetype(FONT_PATH_REGULAR, 32)
+    font_body = ImageFont.truetype(FONT_PATH_REGULAR, 28)
     font_tag = ImageFont.truetype(FONT_PATH, 44)
+
+    text_width = 46
+    body_width = 52
+    if image_path:
+        thumb = Image.open(image_path).convert("RGB")
+        thumb.thumbnail((580, 460))
+        img.paste(thumb, (WIDTH - thumb.width - 40, (HEIGHT - thumb.height) // 2))
+        text_width = 30
+        body_width = 34
 
     draw.text((60, 50), part_label, font=font_label, fill=(255, 210, 120))
 
-    lines = wrap(heading, 46)
+    lines = wrap(heading, text_width)
     y = 130
     for line in lines:
         draw.text((60, y), line, font=font_heading, fill=(255, 255, 255))
@@ -103,15 +114,15 @@ def make_slide(path, part_num, part_label, heading, body, tag=None):
 
     if body:
         y += 30
-        body_lines = wrap(body, 52)
-        for line in body_lines[:12]:
+        body_lines = wrap(body, body_width)
+        for line in body_lines[:14]:
             draw.text((60, y), line, font=font_body, fill=(220, 230, 240))
-            y += 44
+            y += 38
 
     if tag:
         bbox = draw.textbbox((0, 0), tag, font=font_tag)
         tw = bbox[2] - bbox[0]
-        draw.text(((WIDTH - tw) // 2, HEIGHT - 140), tag, font=font_tag, fill=(255, 200, 60))
+        draw.text(((WIDTH - tw) // 2, HEIGHT - 100), tag, font=font_tag, fill=(255, 200, 60))
 
     img.save(path)
 
@@ -156,6 +167,9 @@ def main(md_path_str, out_path_str):
     work_dir = out_path.parent / f"_work_{out_path.stem}"
     work_dir.mkdir(parents=True, exist_ok=True)
 
+    day_num_match = re.search(r"(\d+)", md_path.stem)
+    day_num = int(day_num_match.group(1)) if day_num_match else None
+
     day_title, parts = parse_day_file(md_path)
 
     clip_paths = []
@@ -173,13 +187,21 @@ def main(md_path_str, out_path_str):
     for part_num, part_title, pairs in parts:
         part_label = f"Part {part_num} · {part_title}"
 
+        scene_image = None
+        if day_num is not None and part_num == 3:
+            scene_image = work_dir / "scene_picture.png"
+            visuals.draw_picture(day_num, scene_image)
+        elif day_num is not None and part_num == 4:
+            scene_image = work_dir / "scene_graph.png"
+            visuals.draw_graph(day_num, scene_image)
+
         # Part intro
         idx += 1
         png = work_dir / f"slide_{idx:03d}.png"
         audio = work_dir / f"audio_{idx:03d}.mp3"
         clip = work_dir / f"clip_{idx:03d}.mp4"
         asyncio.run(tts_to_file(f"Part {part_num}: {part_title}.", audio))
-        make_slide(png, part_num, part_label, part_title, None)
+        make_slide(png, part_num, part_label, part_title, None, image_path=scene_image)
         make_clip(png, audio, clip)
         clip_paths.append(clip)
 
@@ -194,7 +216,7 @@ def main(md_path_str, out_path_str):
             else:
                 silent_audio(audio, THINK_TIME)
 
-            make_slide(png, part_num, part_label, heading, body, tag=tag)
+            make_slide(png, part_num, part_label, heading, body, tag=tag, image_path=scene_image)
             make_clip(png, audio, clip)
             clip_paths.append(clip)
 
